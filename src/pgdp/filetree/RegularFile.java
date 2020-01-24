@@ -16,8 +16,7 @@ public class RegularFile extends File {
 		// TODO
 		List<File> a = new LinkedList<File>();
 		a.add(this);
-		Iterator<File> b = a.iterator();
-		return b;
+		return a.iterator();
 	}
 
 	@Override

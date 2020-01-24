@@ -25,19 +25,21 @@ public class Directory extends File {
 		// TODO
 		int sum = 1;
 		try{
+			int max = 1;
 			Iterator<File> a = iterator();
 			while (a.hasNext()){
 				File b = a.next();
 				if(this.hasDirectory() ){
-					return sum + b.getHeight();
+					int tmp = sum + b.getHeight();
+					if(tmp>max) max = tmp;
 				}else{
 					return sum;
 				}
 			}
+			return max;
 		}catch (Exception ex){
 			throw new NoSuchElementException();
 		}
-		return -1;
 	}
 	public boolean hasDirectory(){
 		try{

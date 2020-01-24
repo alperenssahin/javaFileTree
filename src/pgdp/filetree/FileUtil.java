@@ -26,8 +26,4 @@ public class FileUtil {
 		}
 	}
 
-	public static void main(String[] args) throws IOException {
-		System.out.println(toFileRepresentation(FileSystems.getDefault().getPath("./")).getHeight());
-	}
-
 }
