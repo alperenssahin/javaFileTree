@@ -25,20 +25,20 @@ public class Directory extends File {
 		if(!docs.contains(this)){
 			docs.add(this);
 		}
-		files.forEach(file -> {
-			if(!docs.contains(file)){
+		for (File file : files) {
+			if (!docs.contains(file)) {
 				docs.add(file);
 			}
-			if(file instanceof Directory){
+			if (file instanceof Directory) {
 				Iterator<File> it = file.iterator();
-				while (it.hasNext()){
+				while (it.hasNext()) {
 					File sb = it.next();
-					if(!docs.contains(sb)){
+					if (!docs.contains(sb)) {
 						docs.add(sb);
 					}
 				}
 			}
-		});
+		}
 		return docs.iterator();
 	}
 
