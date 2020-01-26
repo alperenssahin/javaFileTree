@@ -1,6 +1,7 @@
 package pgdp.filetree;
 
 import java.nio.file.Path;
+import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 import java.util.NoSuchElementException;
@@ -17,7 +18,28 @@ public class Directory extends File {
 	@Override
 	public Iterator<File> iterator() {
 		// TODO
-		return files.iterator();
+		if(files.size() == 0){
+			throw new NoSuchElementException();
+		}
+		List<File> docs = new ArrayList<File>();
+		if(!docs.contains(this)){
+			docs.add(this);
+		}
+		files.forEach(file -> {
+			if(!docs.contains(file)){
+				docs.add(file);
+			}
+			if(file instanceof Directory){
+				Iterator<File> it = file.iterator();
+				while (it.hasNext()){
+					File sb = it.next();
+					if(!docs.contains(sb)){
+						docs.add(sb);
+					}
+				}
+			}
+		});
+		return docs.iterator();
 	}
 
 	@Override
